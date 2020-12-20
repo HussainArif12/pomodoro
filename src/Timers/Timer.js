@@ -8,8 +8,6 @@ import {
 import sessionEndedAudio from "../Audio/alert_simple.wav";
 import breakEndedAudio from "../Audio/notification_simple-01.wav";
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import PauseIcon from "@material-ui/icons/Pause";
 import LaptopChromebookOutlinedIcon from "@material-ui/icons/LaptopChromebook";
@@ -55,7 +53,7 @@ export default function Timer() {
       if (timerOn) {
         setTimerLength((timerLength) => timerLength - 1);
       }
-    }, 500);
+    }, 200);
 
     if (timerOn) {
       setTimerDone(false);
@@ -114,14 +112,14 @@ export default function Timer() {
         >
           {timerOn ? "Pause" : "Play"}
         </Button>
-        <p className="tracking-widest text-6xl text-primary">
+        <p className="font-sans tracking-widest text-6xl text-primary">
           {moment("1900-01-01 00:00:00")
             .add(timerLength, "seconds")
             .format("mm:ss")}
         </p>
-        <Typography class="text-sessionNumber text-2xl">
+        <p className="text-sessionNumber text-2xl">
           Session Number: {sessionNumber}
-        </Typography>
+        </p>
         <div>
           {sessionType === "Break" && (
             <FreeBreakfastOutlinedIcon style={{ color: "white" }} />

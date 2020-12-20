@@ -48,7 +48,7 @@ export function SesAndBreakTimer(props) {
       </BreakContext.Provider>
       {/*   <div className="flex flex-col justify-center items-center sm:space-x-8 sm:flex-row space-y-8 sm:space-y-0 ">
        */}
-      <div className="flex flex-col items-center sm:grid text-lg text-secondary mt-8  sm:grid-cols-3 gap-8 sm:justify-items-center">
+      <div className="flex flex-col items-center sm:flex-row text-lg text-secondary mt-8  sm:justify-evenly sm:gap-8  sm:space-y-0 space-y-8 ">
         <div>
           <h1 class="">
             <FreeBreakfastOutlinedIcon />
