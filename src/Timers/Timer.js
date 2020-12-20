@@ -8,10 +8,17 @@ import {
 import sessionEndedAudio from "../Audio/alert_simple.wav";
 import breakEndedAudio from "../Audio/notification_simple-01.wav";
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import PauseIcon from "@material-ui/icons/Pause";
+import LaptopChromebookOutlinedIcon from "@material-ui/icons/LaptopChromebook";
+import FreeBreakfastOutlinedIcon from "@material-ui/icons/FreeBreakfast";
+import LocalHotelOutlinedIcon from "@material-ui/icons/LocalHotel";
 
 export default function Timer() {
   const [timerOn, setTimerOn] = useState(false);
-  const [timerDone, setTimerDone] = useState(false);
+  const [timerDone, setTimerDone] = useState(true);
   const [timerLength, setTimerLength] = useState(0);
 
   const [sessionType, setSessionType] = useState("Work");
@@ -20,29 +27,28 @@ export default function Timer() {
   const SessionLength = useContext(SessionContext);
   const LongBreak = useContext(LongBreakContext);
 
-  const [breakLength, setBreakLength] = useState(0);
-  const [sessionLength, setSessionLength] = useState(0);
-
   const sessionEnded = new Audio(sessionEndedAudio);
   const breakEnded = new Audio(breakEndedAudio);
 
-  const [sessionNumber, setSessionNumber] = useState(1);
+  const [sessionNumber, setSessionNumber] = useState(0);
 
   useEffect(() => {
-    console.log("The timers are: ", breakLength, sessionLength);
-    setBreakLength(BreakLength);
-    setSessionLength(SessionLength);
-
     if (sessionType === "Work") {
       setTimerLength(SessionLength);
     }
+  }, [SessionLength, sessionType]);
+
+  useEffect(() => {
     if (sessionType === "Break") {
       setTimerLength(BreakLength);
     }
+  }, [BreakLength, sessionType]);
+
+  useEffect(() => {
     if (sessionType === "Long Break") {
       setTimerLength(LongBreak);
     }
-  }, [BreakLength, SessionLength, LongBreak, sessionType]);
+  }, [LongBreak, sessionType]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -71,20 +77,13 @@ export default function Timer() {
     }
   }, [timerLength]);
 
-  //get changes for sessionType
+  //get changes for sessionType. If TimerDone, then increment session number
   useEffect(() => {
     // .........
-    if (sessionType === "Work") {
-      setTimerLength(SessionLength);
-    } else if (sessionType === "Break") {
-      setTimerLength(BreakLength);
-    } else {
-      setTimerLength(LongBreak);
-    }
     if (sessionType === "Work" && timerDone) {
       setSessionNumber((sessionNumber) => sessionNumber + 1);
     }
-  }, [sessionType, timerDone, sessionType]);
+  }, [sessionType, timerDone]);
 
   useEffect(() => {
     if (timerDone) {
@@ -95,39 +94,45 @@ export default function Timer() {
   useEffect(() => {
     if (sessionNumber > 2) {
       console.log("reached limit");
-      setSessionNumber(1);
+      setSessionNumber(0);
       setSessionType("Long Break");
     }
   }, [sessionNumber]);
 
   return (
     <>
-      <div className="flex flex-col text-center text-xl">
+      <div className="flex flex-col text-center">
         <Button
           variant="contained"
           color="primary"
           size="large"
+          startIcon={timerOn ? <PauseIcon /> : <PlayArrowIcon />}
           onClick={() => {
             breakEnded.play();
             setTimerOn(!timerOn);
           }}
         >
-          {timerOn ? "Pause" : "Turn on Timer"}
+          {timerOn ? "Pause" : "Play"}
         </Button>
-        {/*   </div>
-      <div className="text-center  text-xl">
-        */}
-        <p className="tracking-widest">
+        <p className="tracking-widest text-6xl text-primary">
           {moment("1900-01-01 00:00:00")
             .add(timerLength, "seconds")
-            .format("HH:mm:ss")}
+            .format("mm:ss")}
         </p>
-        <p>{timerDone ? "Done" : "Wait.."}</p>
-        <p>
-          Break {breakLength} Session: {sessionLength} Long Break : {LongBreak}
-        </p>
-        <p>Session Number: {sessionNumber}</p>
-        <p>{sessionType}</p>
+        <Typography class="text-sessionNumber text-2xl">
+          Session Number: {sessionNumber}
+        </Typography>
+        <div>
+          {sessionType === "Break" && (
+            <FreeBreakfastOutlinedIcon style={{ color: "white" }} />
+          )}
+          {sessionType === "Work" && (
+            <LaptopChromebookOutlinedIcon style={{ color: "white" }} />
+          )}
+          {sessionType === "Long Break" && (
+            <LocalHotelOutlinedIcon style={{ color: "white" }} />
+          )}
+        </div>
       </div>
     </>
   );

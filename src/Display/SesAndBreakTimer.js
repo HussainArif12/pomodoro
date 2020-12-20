@@ -1,6 +1,11 @@
 import { createContext, useState } from "react";
 import Timer from "../Timers/Timer";
 import Button from "@material-ui/core/Button";
+import LaptopChromebookOutlinedIcon from "@material-ui/icons/LaptopChromebook";
+import FreeBreakfastOutlinedIcon from "@material-ui/icons/FreeBreakfast";
+import LocalHotelOutlinedIcon from "@material-ui/icons/LocalHotel";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 export const BreakContext = createContext();
 export const SessionContext = createContext();
@@ -43,63 +48,72 @@ export function SesAndBreakTimer(props) {
       </BreakContext.Provider>
       {/*   <div className="flex flex-col justify-center items-center sm:space-x-8 sm:flex-row space-y-8 sm:space-y-0 ">
        */}
-      <div className="flex flex-col items-center sm:grid sm:grid-cols-3 gap-4 sm:justify-items-center">
+      <div className="flex flex-col items-center sm:grid text-lg text-secondary mt-8  sm:grid-cols-3 gap-8 sm:justify-items-center">
         <div>
-          <h1>Break</h1>
+          <h1 class="">
+            <FreeBreakfastOutlinedIcon />
+            Break: {breakLength}
+          </h1>
           <Button
             variant="contained"
             color="primary"
             size="large"
             onClick={incrementBreakLength}
-          >
-            +
-          </Button>
+            startIcon={<AddIcon />}
+            disableElevation
+          ></Button>
           <Button
             variant="contained"
             color="secondary"
             size="large"
             onClick={decrementBreakLength}
-          >
-            -
-          </Button>
+            startIcon={<RemoveIcon />}
+            disableElevation
+          ></Button>
         </div>
         <div>
-          <h2>Session</h2>
+          <h2>
+            <LaptopChromebookOutlinedIcon />
+            Session : {sessionLength}
+          </h2>
           <Button
             variant="contained"
             color="primary"
             size="large"
             onClick={incrementSessionLength}
-          >
-            +
-          </Button>
+            startIcon={<AddIcon />}
+            disableElevation
+          ></Button>
           <Button
             variant="contained"
             color="secondary"
             size="large"
             onClick={decrementSessionLength}
-          >
-            -
-          </Button>
+            startIcon={<RemoveIcon />}
+            disableElevation
+          ></Button>
         </div>
         <div>
-          <h2>Long Break</h2>
+          <h2>
+            <LocalHotelOutlinedIcon />
+            Long Break : {longBreak}
+          </h2>
           <Button
             variant="contained"
             color="primary"
             size="large"
             onClick={incrementLongBreakLength}
-          >
-            +
-          </Button>
+            startIcon={<AddIcon />}
+            disableElevation
+          ></Button>
           <Button
             variant="contained"
             color="secondary"
             size="large"
             onClick={decrementLongBreakLength}
-          >
-            -
-          </Button>
+            startIcon={<RemoveIcon />}
+            disableElevation
+          ></Button>
         </div>
       </div>
     </>
