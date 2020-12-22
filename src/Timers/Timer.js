@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import moment from "moment";
+import Duration from "luxon/src/duration.js";
 import {
   SessionContext,
   BreakContext,
@@ -32,19 +33,19 @@ export default function Timer() {
 
   useEffect(() => {
     if (sessionType === "Work") {
-      setTimerLength(SessionLength);
+      setTimerLength(SessionLength * 60);
     }
   }, [SessionLength, sessionType]);
 
   useEffect(() => {
     if (sessionType === "Break") {
-      setTimerLength(BreakLength);
+      setTimerLength(BreakLength * 60);
     }
   }, [BreakLength, sessionType]);
 
   useEffect(() => {
     if (sessionType === "Long Break") {
-      setTimerLength(LongBreak);
+      setTimerLength(LongBreak * 60);
     }
   }, [LongBreak, sessionType]);
 
@@ -113,9 +114,7 @@ export default function Timer() {
           {timerOn ? "Pause" : "Play"}
         </Button>
         <p className="font-sans tracking-widest text-6xl text-primary">
-          {moment("1900-01-01 00:00:00")
-            .add(timerLength, "seconds")
-            .format("mm:ss")}
+          {Duration.fromObject({ seconds: timerLength }).toFormat("mm:ss")}
         </p>
         <p className="text-sessionNumber text-2xl">
           Session Number: {sessionNumber}
