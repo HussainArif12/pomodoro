@@ -11,7 +11,7 @@ export const BreakContext = createContext();
 export const SessionContext = createContext();
 export const LongBreakContext = createContext();
 
-export function SesAndBreakTimer(props) {
+export function SesAndBreakTimer() {
   const [breakLength, setBreakLength] = useState(5);
   const [sessionLength, setSessionLength] = useState(10);
   const [longBreak, setLongBreakLength] = useState(15);
@@ -46,8 +46,7 @@ export function SesAndBreakTimer(props) {
           </LongBreakContext.Provider>
         </SessionContext.Provider>
       </BreakContext.Provider>
-      {/*   <div className="flex flex-col justify-center items-center sm:space-x-8 sm:flex-row space-y-8 sm:space-y-0 ">
-       */}
+
       <div className="flex flex-col items-center sm:flex-row text-lg text-secondary mt-8  sm:justify-evenly sm:gap-8  sm:space-y-0 space-y-8 ">
         <div>
           <h1 class="">
