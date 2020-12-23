@@ -82,13 +82,16 @@ export default function Timer() {
     if (sessionType === "Work" && timerDone) {
       setSessionNumber((sessionNumber) => sessionNumber + 1);
     }
+    if (timerDone) {
+      sessionEnded.play();
+    }
   }, [sessionType, timerDone]);
-
+  /* 
   useEffect(() => {
     if (timerDone) {
       sessionEnded.play();
     }
-  }, [timerDone]);
+  }, [timerDone]); */
 
   useEffect(() => {
     if (sessionNumber > 2) {
