@@ -31,21 +31,22 @@ export default function Timer() {
 
   const [sessionNumber, setSessionNumber] = useState(0);
 
+  const minuteMultiplier = 1;
   useEffect(() => {
     if (sessionType === "Work") {
-      setTimerLength(SessionLength * 60);
+      setTimerLength(SessionLength * minuteMultiplier);
     }
   }, [SessionLength, sessionType]);
 
   useEffect(() => {
     if (sessionType === "Break") {
-      setTimerLength(BreakLength * 60);
+      setTimerLength(BreakLength * minuteMultiplier);
     }
   }, [BreakLength, sessionType]);
 
   useEffect(() => {
     if (sessionType === "Long Break") {
-      setTimerLength(LongBreak * 60);
+      setTimerLength(LongBreak * minuteMultiplier);
     }
   }, [LongBreak, sessionType]);
 
