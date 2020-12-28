@@ -31,7 +31,7 @@ export default function Timer() {
 
   const [sessionNumber, setSessionNumber] = useState(0);
 
-  const minuteMultiplier = 1;
+  const minuteMultiplier = 60;
   useEffect(() => {
     if (sessionType === "Work") {
       setTimerLength(SessionLength * minuteMultiplier);
