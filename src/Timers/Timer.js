@@ -14,6 +14,7 @@ import PauseIcon from "@material-ui/icons/Pause";
 import LaptopChromebookOutlinedIcon from "@material-ui/icons/LaptopChromebook";
 import FreeBreakfastOutlinedIcon from "@material-ui/icons/FreeBreakfast";
 import LocalHotelOutlinedIcon from "@material-ui/icons/LocalHotel";
+import Card from "@material-ui/core/Card";
 
 export default function Timer() {
   const [timerOn, setTimerOn] = useState(false);

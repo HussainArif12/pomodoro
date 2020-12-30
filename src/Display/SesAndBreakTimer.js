@@ -6,7 +6,7 @@ import FreeBreakfastOutlinedIcon from "@material-ui/icons/FreeBreakfast";
 import LocalHotelOutlinedIcon from "@material-ui/icons/LocalHotel";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-
+import Card from "@material-ui/core/Card";
 export const BreakContext = createContext();
 export const SessionContext = createContext();
 export const LongBreakContext = createContext();
@@ -39,82 +39,84 @@ export function SesAndBreakTimer() {
   }
   return (
     <>
-      <BreakContext.Provider value={breakLength}>
-        <SessionContext.Provider value={sessionLength}>
-          <LongBreakContext.Provider value={longBreak}>
-            <Timer />
-          </LongBreakContext.Provider>
-        </SessionContext.Provider>
-      </BreakContext.Provider>
+      <Card>
+        <BreakContext.Provider value={breakLength}>
+          <SessionContext.Provider value={sessionLength}>
+            <LongBreakContext.Provider value={longBreak}>
+              <Timer />
+            </LongBreakContext.Provider>
+          </SessionContext.Provider>
+        </BreakContext.Provider>
 
-      <div className="flex flex-col items-center sm:flex-row text-lg text-secondary mt-8  sm:justify-evenly sm:gap-8  sm:space-y-0 space-y-8 ">
-        <div>
-          <h1 class="">
-            <FreeBreakfastOutlinedIcon />
-            Break: {breakLength}
-          </h1>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            onClick={incrementBreakLength}
-            startIcon={<AddIcon />}
-            disableElevation
-          ></Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            onClick={decrementBreakLength}
-            startIcon={<RemoveIcon />}
-            disableElevation
-          ></Button>
+        <div className="flex flex-col items-center sm:flex-row text-lg text-secondary mt-8  sm:justify-evenly sm:gap-8  sm:space-y-0 space-y-8 ">
+          <div>
+            <h1 class="">
+              <FreeBreakfastOutlinedIcon />
+              Break: {breakLength}
+            </h1>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              onClick={incrementBreakLength}
+              startIcon={<AddIcon />}
+              disableElevation
+            ></Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              onClick={decrementBreakLength}
+              startIcon={<RemoveIcon />}
+              disableElevation
+            ></Button>
+          </div>
+          <div>
+            <h2>
+              <LaptopChromebookOutlinedIcon />
+              Session : {sessionLength}
+            </h2>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              onClick={incrementSessionLength}
+              startIcon={<AddIcon />}
+              disableElevation
+            ></Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              onClick={decrementSessionLength}
+              startIcon={<RemoveIcon />}
+              disableElevation
+            ></Button>
+          </div>
+          <div>
+            <h2>
+              <LocalHotelOutlinedIcon />
+              Long Break : {longBreak}
+            </h2>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              onClick={incrementLongBreakLength}
+              startIcon={<AddIcon />}
+              disableElevation
+            ></Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              onClick={decrementLongBreakLength}
+              startIcon={<RemoveIcon />}
+              disableElevation
+            ></Button>
+          </div>
         </div>
-        <div>
-          <h2>
-            <LaptopChromebookOutlinedIcon />
-            Session : {sessionLength}
-          </h2>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            onClick={incrementSessionLength}
-            startIcon={<AddIcon />}
-            disableElevation
-          ></Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            onClick={decrementSessionLength}
-            startIcon={<RemoveIcon />}
-            disableElevation
-          ></Button>
-        </div>
-        <div>
-          <h2>
-            <LocalHotelOutlinedIcon />
-            Long Break : {longBreak}
-          </h2>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            onClick={incrementLongBreakLength}
-            startIcon={<AddIcon />}
-            disableElevation
-          ></Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            onClick={decrementLongBreakLength}
-            startIcon={<RemoveIcon />}
-            disableElevation
-          ></Button>
-        </div>
-      </div>
+      </Card>
     </>
   );
 }
