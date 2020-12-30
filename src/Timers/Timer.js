@@ -56,7 +56,7 @@ export default function Timer() {
       if (timerOn) {
         setTimerLength((timerLength) => timerLength - 1);
       }
-    }, 200);
+    }, 1000);
 
     if (timerOn) {
       setTimerDone(false);
@@ -118,7 +118,7 @@ export default function Timer() {
         >
           {timerOn ? "Pause" : "Play"}
         </Button>
-        <p className="font-sans tracking-widest text-6xl text-primary">
+        <p className="font-sans tracking-widest text-6xl mt-8 text-primary">
           {Duration.fromObject({ seconds: timerLength }).toFormat("mm:ss")}
         </p>
         <p className="text-sessionNumber text-2xl">
