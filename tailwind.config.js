@@ -5,8 +5,6 @@ module.exports = {
     extend: {},
     backgroundColor: (theme) => ({
       primary: "#3b4252",
-      secondary: "#ffed4a",
-      danger: "#e3342f",
     }),
     textColor: {
       primary: "#ebcb8b",
